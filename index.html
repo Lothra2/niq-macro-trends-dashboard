@@ -230,14 +230,87 @@ tr:last-child td{border-bottom:none;}
           <div>
             <div style="font-size:13px;font-weight:800;color:#001C40;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #00B5B5;">📡 Data Sources</div>
             <table style="width:100%;border-collapse:collapse;font-size:11px;margin-bottom:20px">
-              <tr style="background:#001C40;color:#fff"><th style="padding:6px 8px;text-align:left">KPI</th><th style="padding:6px 8px;text-align:left">Primary Source</th><th style="padding:6px 8px;text-align:left">Coverage</th></tr>
-              <tr style="background:#F7FBFB"><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">GDP/Capita PPP, Growth, Inflation, Unemployment, Govt Debt, Current Account</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">IMF World Economic Outlook Oct 2025 + Jan 2026 Update</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">2014–2025*</td></tr>
-              <tr><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Trade Openness, FDI, Pvt Consumption</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">World Bank World Development Indicators (WDI)</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">2014–2024*</td></tr>
-              <tr style="background:#F7FBFB"><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Population, Median Age</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">UN World Population Prospects 2024</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">2014–2025</td></tr>
-              <tr><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Urbanization Rate</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">UN World Urbanization Prospects 2025</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">2014–2025</td></tr>
-              <tr style="background:#F7FBFB"><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Internet &amp; Mobile Penetration</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">ITU / GSMA / World Bank</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">2014–2025*</td></tr>
-              <tr><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Gini Coefficient</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">World Bank / National Statistical Offices</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Latest available, carried forward</td></tr>
-              <tr style="background:#F7FBFB"><td style="padding:5px 8px">Big Mac Price &amp; Index</td><td style="padding:5px 8px">The Economist Big Mac Index</td><td style="padding:5px 8px">Semi-annual; gaps interpolated</td></tr>
+              <tr style="background:#001C40;color:#fff">
+                <th style="padding:6px 8px;text-align:left">KPI</th>
+                <th style="padding:6px 8px;text-align:left">Primary Source</th>
+                <th style="padding:6px 8px;text-align:left">Direct Link</th>
+                <th style="padding:6px 8px;text-align:left">Coverage</th>
+              </tr>
+              <tr style="background:#F7FBFB">
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF;font-weight:600;color:#001C40">GDP/Capita PPP, Growth, Inflation, Unemployment, Govt Debt, Current Account</td>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">IMF World Economic Outlook</td>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">
+                  <a href="https://www.imf.org/en/Publications/WEO/weo-database/2025/October" target="_blank" style="color:#00B5B5;text-decoration:none;font-weight:600">WEO Oct 2025 ↗</a><br>
+                  <a href="https://www.imf.org/en/Publications/WEO/weo-database/2026/January" target="_blank" style="color:#00B5B5;text-decoration:none;font-size:10px">Jan 2026 Update ↗</a>
+                </td>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">2014–2025*</td>
+              </tr>
+              <tr>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF;font-weight:600;color:#001C40">Trade Openness, FDI Inflows, Pvt Consumption</td>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">World Bank World Development Indicators</td>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">
+                  <a href="https://databank.worldbank.org/source/world-development-indicators" target="_blank" style="color:#00B5B5;text-decoration:none;font-weight:600">WDI Databank ↗</a>
+                </td>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">2014–2024*</td>
+              </tr>
+              <tr style="background:#F7FBFB">
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF;font-weight:600;color:#001C40">Population, Median Age</td>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">UN World Population Prospects 2024</td>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">
+                  <a href="https://population.un.org/wpp/" target="_blank" style="color:#00B5B5;text-decoration:none;font-weight:600">UN WPP 2024 ↗</a>
+                </td>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">2014–2025</td>
+              </tr>
+              <tr>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF;font-weight:600;color:#001C40">Urbanization Rate</td>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">UN World Urbanization Prospects 2025</td>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">
+                  <a href="https://population.un.org/wup/" target="_blank" style="color:#00B5B5;text-decoration:none;font-weight:600">UN WUP 2025 ↗</a>
+                </td>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">2014–2025</td>
+              </tr>
+              <tr style="background:#F7FBFB">
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF;font-weight:600;color:#001C40">Unemployment Rate</td>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">ILO ILOSTAT (harmonized) + IMF WEO</td>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">
+                  <a href="https://ilostat.ilo.org/data/" target="_blank" style="color:#00B5B5;text-decoration:none;font-weight:600">ILOSTAT ↗</a>
+                </td>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">2014–2025*</td>
+              </tr>
+              <tr>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF;font-weight:600;color:#001C40">Internet Penetration</td>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">ITU Telecommunications Data</td>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">
+                  <a href="https://datahub.itu.int/data/?i=100059" target="_blank" style="color:#00B5B5;text-decoration:none;font-weight:600">ITU DataHub ↗</a>
+                </td>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">2014–2025*</td>
+              </tr>
+              <tr style="background:#F7FBFB">
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF;font-weight:600;color:#001C40">Mobile Penetration</td>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">ITU / GSMA Intelligence</td>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">
+                  <a href="https://datahub.itu.int/data/?i=100059" target="_blank" style="color:#00B5B5;text-decoration:none;font-weight:600">ITU DataHub ↗</a> &nbsp;
+                  <a href="https://www.gsma.com/solutions-and-impact/connectivity/gsma-intelligence/" target="_blank" style="color:#00B5B5;text-decoration:none;font-size:10px">GSMA Intelligence ↗</a>
+                </td>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">2014–2025*</td>
+              </tr>
+              <tr>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF;font-weight:600;color:#001C40">Gini Coefficient</td>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">World Bank Poverty &amp; Inequality Platform</td>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">
+                  <a href="https://pip.worldbank.org/" target="_blank" style="color:#00B5B5;text-decoration:none;font-weight:600">PIP Portal ↗</a>
+                </td>
+                <td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Latest available, carried forward</td>
+              </tr>
+              <tr style="background:#F7FBFB">
+                <td style="padding:5px 8px;font-weight:600;color:#001C40">Big Mac Price &amp; BM Index vs US</td>
+                <td style="padding:5px 8px">The Economist Big Mac Index</td>
+                <td style="padding:5px 8px">
+                  <a href="https://www.economist.com/big-mac-index" target="_blank" style="color:#00B5B5;text-decoration:none;font-weight:600">The Economist ↗</a> &nbsp;
+                  <a href="https://github.com/TheEconomist/big-mac-data" target="_blank" style="color:#00B5B5;text-decoration:none;font-size:10px">Raw Data (GitHub) ↗</a>
+                </td>
+                <td style="padding:5px 8px">Semi-annual; gaps interpolated</td>
+              </tr>
             </table>
             <div style="font-size:11px;color:#607080;margin-bottom:20px">* 2025 figures are IMF projections (Jan 2026 update) or author extrapolations where official data is not yet available.</div>
 
