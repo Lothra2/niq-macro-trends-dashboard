@@ -6,29 +6,41 @@
 <title>NielsenIQ · Global FMCG Macro Intelligence · Historical Trends</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap');
 :root {
-  --navy: #001C40;
-  --teal: #00B5B5;
-  --teal2: #009999;
-  --gold: #F5A623;
-  --bg: #F2F5F8;
+  --navy: #060A45;
+  --blue: #2D6DF6;
+  --blue2: #1A5BDE;
+  --light-blue: #31D1FF;
+  --orange: #EF5F17;
+  --green: #59AD00;
+  --pink: #EF5890;
+  --yellow: #FFB500;
+  --bg: #F0F2F8;
   --white: #FFFFFF;
   --gray: #E4E9EF;
   --text: #1A2B3C;
-  --muted: #5A6B7C;
+  --muted: #999999;
   --border: #D0D8E0;
-  --green: #00A878;
-  --red: #D93025;
   --r: 8px;
-  --shadow: 0 2px 8px rgba(0,28,64,.10);
+  --shadow: 0 2px 8px rgba(6,10,69,.10);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);font-size:13px;}
 
+/* Flag emoji font — cross-platform */
+.cflag, .cbtn .cbtn-flag, .cname {
+  font-family: 'Noto Color Emoji', 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif;
+}
+/* Apply to all spans that hold flag emoji in sidebar and header */
+.cflag, .cbtn > span:first-child {
+  font-family: 'Noto Color Emoji', 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif;
+}
+
 /* HEADER */
 .hdr{background:var(--navy);height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,.25);}
 .hdr-left{display:flex;align-items:center;gap:14px;}
-.logo{background:var(--teal);color:#fff;font-weight:900;font-size:17px;letter-spacing:-0.5px;padding:5px 11px;border-radius:4px;}
+.logo{background:var(--blue);color:#fff;font-weight:900;font-size:17px;letter-spacing:-0.5px;padding:5px 11px;border-radius:4px;}
 .hdr-title{color:#fff;font-size:14px;font-weight:700;}
 .hdr-sub{color:rgba(255,255,255,.5);font-size:11px;margin-top:1px;}
 .hdr-right{color:rgba(255,255,255,.4);font-size:10px;text-align:right;line-height:1.7;}
@@ -39,18 +51,18 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--te
 /* SIDEBAR */
 .sidebar{background:var(--navy);overflow-y:auto;border-right:1px solid rgba(255,255,255,.07);}
 .sidebar::-webkit-scrollbar{width:3px;}
-.sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px;}
+.sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:2px;}
 .slabel{color:rgba(255,255,255,.35);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:14px 18px 5px;}
 .rhdr{display:flex;align-items:center;justify-content:space-between;padding:9px 18px;cursor:pointer;color:rgba(255,255,255,.85);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;user-select:none;transition:background .15s;}
-.rhdr:hover{background:rgba(0,181,181,.1);}
-.rhdr.open{color:var(--teal);background:rgba(0,181,181,.1);}
+.rhdr:hover{background:rgba(45,109,246,.12);}
+.rhdr.open{color:var(--blue);background:rgba(45,109,246,.1);}
 .rchev{font-size:9px;transition:transform .2s;}
 .rhdr.open .rchev{transform:rotate(180deg);}
 .clist{display:none;padding:2px 0;}
 .rhdr.open+.clist{display:block;}
 .cbtn{display:flex;align-items:center;gap:7px;width:100%;padding:6px 18px 6px 30px;background:none;border:none;color:rgba(255,255,255,.6);font-size:12px;cursor:pointer;text-align:left;transition:all .12s;}
-.cbtn:hover{background:rgba(0,181,181,.08);color:#fff;}
-.cbtn.active{background:rgba(0,181,181,.18);color:var(--teal);font-weight:600;border-left:3px solid var(--teal);padding-left:27px;}
+.cbtn:hover{background:rgba(45,109,246,.08);color:#fff;}
+.cbtn.active{background:rgba(45,109,246,.18);color:var(--blue);font-weight:600;border-left:3px solid var(--blue);padding-left:27px;}
 
 /* MAIN */
 .main{overflow-y:auto;padding:20px 24px;}
@@ -60,22 +72,22 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--te
 .ctrl-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);white-space:nowrap;}
 .pills{display:flex;flex-wrap:wrap;gap:5px;}
 .pill{padding:4px 11px;border-radius:16px;border:1.5px solid var(--border);background:none;color:var(--text);font-size:11px;cursor:pointer;transition:all .12s;white-space:nowrap;}
-.pill:hover{border-color:var(--teal);color:var(--teal);}
-.pill.on{background:var(--teal);border-color:var(--teal);color:#fff;font-weight:700;}
+.pill:hover{border-color:var(--blue);color:var(--blue);}
+.pill.on{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:700;}
 
 /* COUNTRY HEADER */
 .chdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px;}
 .chdr-left{display:flex;align-items:center;gap:12px;}
-.cflag{font-size:30px;}
+.cflag{font-size:28px;line-height:1;}
 .cname{font-size:20px;font-weight:800;color:var(--navy);}
 .cregion{font-size:11px;color:var(--muted);margin-top:1px;font-weight:500;}
-.csignal{padding:5px 13px;border-radius:16px;font-size:11px;font-weight:700;background:rgba(0,181,181,.08);color:var(--teal2);border:1.5px solid var(--teal);}
+.csignal{padding:5px 13px;border-radius:16px;font-size:11px;font-weight:700;background:rgba(45,109,246,.08);color:var(--blue2);border:1.5px solid var(--blue);}
 
 /* TABS */
 .tabs{display:flex;gap:4px;margin-bottom:16px;}
 .tab{padding:6px 15px;border-radius:6px;border:1.5px solid var(--border);background:none;color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;transition:all .12s;}
 .tab.on{background:var(--navy);border-color:var(--navy);color:#fff;}
-.tab:hover:not(.on){border-color:var(--teal);color:var(--teal);}
+.tab:hover:not(.on){border-color:var(--blue);color:var(--blue);}
 .vp{display:none;}
 .vp.on{display:block;}
 
@@ -86,7 +98,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--te
 .card-val{font-size:20px;font-weight:900;color:var(--navy);line-height:1;}
 .card-sub{font-size:10px;color:var(--muted);margin-top:3px;display:flex;align-items:center;gap:3px;}
 .up{color:var(--green);}
-.dn{color:var(--red);}
+.dn{color:var(--pink);}
 
 /* CHART BOXES */
 .cbox{background:var(--white);border-radius:var(--r);padding:18px 20px;box-shadow:var(--shadow);border:1px solid var(--border);margin-bottom:16px;}
@@ -103,7 +115,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--te
 /* COMPARE */
 .cmp-selects{display:flex;gap:8px;flex-wrap:wrap;}
 .csel{padding:6px 10px;border:1.5px solid var(--border);border-radius:6px;font-size:11px;color:var(--text);background:#fff;cursor:pointer;min-width:160px;}
-.csel:focus{outline:none;border-color:var(--teal);}
+.csel:focus{outline:none;border-color:var(--blue);}
 
 /* TABLE */
 .tbl-wrap{overflow-x:auto;}
@@ -112,21 +124,16 @@ th{background:var(--navy);color:#fff;padding:8px 9px;text-align:right;font-weigh
 th:first-child{text-align:left;}
 td{padding:6px 9px;text-align:right;border-bottom:1px solid var(--gray);}
 td:first-child{text-align:left;font-weight:600;color:var(--navy);}
-tr:hover td{background:#F0F9F9;}
+tr:hover td{background:#EEF3FF;}
 tr:last-child td{border-bottom:none;}
 
 /* FOOTER */
 .ftr{background:var(--navy);color:rgba(255,255,255,.35);font-size:10px;padding:10px 28px;line-height:1.8;}
 
-/* ABOUT PANEL */
-.about-section{margin-bottom:24px;}
-.about-section h3{font-size:13px;font-weight:800;color:var(--navy);margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid var(--teal);}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
-
 /* HEATMAP CELLS */
-.hg{background:rgba(0,168,120,.14);}
-.hb{background:rgba(217,48,37,.10);}
-.hm{background:rgba(245,166,35,.10);}
+.hg{background:rgba(89,173,0,.14);}
+.hb{background:rgba(239,88,144,.10);}
+.hm{background:rgba(255,181,0,.10);}
 </style>
 </head>
 <body>
@@ -194,43 +201,43 @@ tr:last-child td{border-bottom:none;}
 
           <!-- LEFT COL -->
           <div>
-            <div style="font-size:13px;font-weight:800;color:#001C40;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #00B5B5;">🗺 Navigation</div>
+            <div style="font-size:13px;font-weight:800;color:#060A45;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #2D6DF6;">🗺 Navigation</div>
             <div style="font-size:12px;color:#3A4B5C;margin-bottom:16px">
-              <p style="margin-bottom:6px"><strong>Sidebar:</strong> Select any of the 42 markets. Organized by region. Click a region header to expand/collapse.</p>
+              <p style="margin-bottom:6px"><strong>Sidebar:</strong> Select any of the 43 markets. Organized by region. Click a region header to expand/collapse.</p>
               <p style="margin-bottom:6px"><strong>KPI Pills (top bar):</strong> Switch between the 17 macro indicators. The selected KPI applies across all views.</p>
               <p style="margin-bottom:6px"><strong>📈 Trend:</strong> Line chart for the selected country + KPI over 2014–2025.</p>
               <p style="margin-bottom:6px"><strong>🗂 Overview:</strong> Snapshot of 8 key KPIs for the selected country with mini trend bars.</p>
               <p style="margin-bottom:6px"><strong>⚖ Compare:</strong> Side-by-side line chart for up to 3 countries on the same KPI.</p>
-              <p style="margin-bottom:6px"><strong>📋 Data Table:</strong> Full raw data matrix for the selected country — all KPIs × all years. Highlights max (green) and negative values (red).</p>
+              <p style="margin-bottom:6px"><strong>📋 Data Table:</strong> Full raw data matrix for the selected country — all KPIs × all years. Highlights max (green) and negative values (pink).</p>
             </div>
 
-            <div style="font-size:13px;font-weight:800;color:#001C40;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #00B5B5;">📊 KPI Definitions</div>
+            <div style="font-size:13px;font-weight:800;color:#060A45;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #2D6DF6;">📊 KPI Definitions</div>
             <table style="width:100%;border-collapse:collapse;font-size:11px">
-              <tr style="background:#001C40;color:#fff"><th style="padding:6px 8px;text-align:left">KPI</th><th style="padding:6px 8px;text-align:left">Definition</th></tr>
-              <tr style="background:#F7FBFB"><td style="padding:5px 8px;font-weight:600;color:#001C40;border-bottom:1px solid #E4E9EF">GDP/Capita PPP</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Gross Domestic Product per person, adjusted for Purchasing Power Parity. Best for comparing real living standards across countries.</td></tr>
-              <tr><td style="padding:5px 8px;font-weight:600;color:#001C40;border-bottom:1px solid #E4E9EF">GDP Growth</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Real annual GDP growth rate (%). Measures economic momentum. Negative = recession.</td></tr>
-              <tr style="background:#F7FBFB"><td style="padding:5px 8px;font-weight:600;color:#001C40;border-bottom:1px solid #E4E9EF">CPI Inflation</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Consumer Price Index annual change (%). High inflation erodes purchasing power and compresses FMCG volume.</td></tr>
-              <tr><td style="padding:5px 8px;font-weight:600;color:#001C40;border-bottom:1px solid #E4E9EF">Unemployment</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">% of labor force without work. Affects disposable income and consumer confidence.</td></tr>
-              <tr style="background:#F7FBFB"><td style="padding:5px 8px;font-weight:600;color:#001C40;border-bottom:1px solid #E4E9EF">Govt Debt</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">General government gross debt as % of GDP. High debt limits fiscal stimulus capacity.</td></tr>
-              <tr><td style="padding:5px 8px;font-weight:600;color:#001C40;border-bottom:1px solid #E4E9EF">Current Account</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Trade + income balance as % of GDP. Surplus = net exporter; deficit = more imports than exports.</td></tr>
-              <tr style="background:#F7FBFB"><td style="padding:5px 8px;font-weight:600;color:#001C40;border-bottom:1px solid #E4E9EF">Trade Openness</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">(Exports + Imports) / GDP. High = globally integrated economy. Values over 100% are common for trade hubs.</td></tr>
-              <tr><td style="padding:5px 8px;font-weight:600;color:#001C40;border-bottom:1px solid #E4E9EF">FDI Inflows</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Foreign Direct Investment as % of GDP. Signals investor confidence and growth potential.</td></tr>
-              <tr style="background:#F7FBFB"><td style="padding:5px 8px;font-weight:600;color:#001C40;border-bottom:1px solid #E4E9EF">Pvt Consumption</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Household final consumption expenditure as % of GDP. High = consumer-driven economy, strong FMCG base.</td></tr>
-              <tr><td style="padding:5px 8px;font-weight:600;color:#001C40;border-bottom:1px solid #E4E9EF">Urbanization</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">% of population living in urban areas. Drives modern trade channel adoption and FMCG premiumization.</td></tr>
-              <tr style="background:#F7FBFB"><td style="padding:5px 8px;font-weight:600;color:#001C40;border-bottom:1px solid #E4E9EF">Internet</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">% of individuals using the internet. Proxy for digital commerce readiness and omnichannel penetration.</td></tr>
-              <tr><td style="padding:5px 8px;font-weight:600;color:#001C40;border-bottom:1px solid #E4E9EF">Mobile</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Mobile cellular subscriptions per 100 people. Can exceed 100 (multiple SIMs). Enables m-commerce in FMCG.</td></tr>
-              <tr style="background:#F7FBFB"><td style="padding:5px 8px;font-weight:600;color:#001C40;border-bottom:1px solid #E4E9EF">Gini Coefficient</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Income inequality index. 0 = perfect equality; 100 = maximum inequality. High Gini = polarized consumption — mass and ultra-premium co-exist; mid-market is thin.</td></tr>
-              <tr><td style="padding:5px 8px;font-weight:600;color:#001C40;border-bottom:1px solid #E4E9EF">Median Age</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Years. Young markets (&lt;30) = volume growth; aging markets (&gt;45) = premiumization, health, convenience.</td></tr>
-              <tr style="background:#F7FBFB"><td style="padding:5px 8px;font-weight:600;color:#001C40;border-bottom:1px solid #E4E9EF">Big Mac Price</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">USD price of a Big Mac. Informal proxy for local price levels and cost of living.</td></tr>
-              <tr><td style="padding:5px 8px;font-weight:600;color:#001C40">BM Index vs US</td><td style="padding:5px 8px">Big Mac price vs the US as %. Negative = currency undervalued vs USD; positive = overvalued.</td></tr>
+              <tr style="background:#060A45;color:#fff"><th style="padding:6px 8px;text-align:left">KPI</th><th style="padding:6px 8px;text-align:left">Definition</th></tr>
+              <tr style="background:#F7FBFB"><td style="padding:5px 8px;font-weight:600;color:#060A45;border-bottom:1px solid #E4E9EF">GDP/Capita PPP</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Gross Domestic Product per person, adjusted for Purchasing Power Parity. Best for comparing real living standards across countries.</td></tr>
+              <tr><td style="padding:5px 8px;font-weight:600;color:#060A45;border-bottom:1px solid #E4E9EF">GDP Growth</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Real annual GDP growth rate (%). Measures economic momentum. Negative = recession.</td></tr>
+              <tr style="background:#F7FBFB"><td style="padding:5px 8px;font-weight:600;color:#060A45;border-bottom:1px solid #E4E9EF">CPI Inflation</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Consumer Price Index annual change (%). High inflation erodes purchasing power and compresses FMCG volume.</td></tr>
+              <tr><td style="padding:5px 8px;font-weight:600;color:#060A45;border-bottom:1px solid #E4E9EF">Unemployment</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">% of labor force without work. Affects disposable income and consumer confidence.</td></tr>
+              <tr style="background:#F7FBFB"><td style="padding:5px 8px;font-weight:600;color:#060A45;border-bottom:1px solid #E4E9EF">Govt Debt</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">General government gross debt as % of GDP. High debt limits fiscal stimulus capacity.</td></tr>
+              <tr><td style="padding:5px 8px;font-weight:600;color:#060A45;border-bottom:1px solid #E4E9EF">Current Account</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Trade + income balance as % of GDP. Surplus = net exporter; deficit = more imports than exports.</td></tr>
+              <tr style="background:#F7FBFB"><td style="padding:5px 8px;font-weight:600;color:#060A45;border-bottom:1px solid #E4E9EF">Trade Openness</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">(Exports + Imports) / GDP. High = globally integrated economy. Values over 100% are common for trade hubs.</td></tr>
+              <tr><td style="padding:5px 8px;font-weight:600;color:#060A45;border-bottom:1px solid #E4E9EF">FDI Inflows</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Foreign Direct Investment as % of GDP. Signals investor confidence and growth potential.</td></tr>
+              <tr style="background:#F7FBFB"><td style="padding:5px 8px;font-weight:600;color:#060A45;border-bottom:1px solid #E4E9EF">Pvt Consumption</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Household final consumption expenditure as % of GDP. High = consumer-driven economy, strong FMCG base.</td></tr>
+              <tr><td style="padding:5px 8px;font-weight:600;color:#060A45;border-bottom:1px solid #E4E9EF">Urbanization</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">% of population living in urban areas. Drives modern trade channel adoption and FMCG premiumization.</td></tr>
+              <tr style="background:#F7FBFB"><td style="padding:5px 8px;font-weight:600;color:#060A45;border-bottom:1px solid #E4E9EF">Internet</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">% of individuals using the internet. Proxy for digital commerce readiness and omnichannel penetration.</td></tr>
+              <tr><td style="padding:5px 8px;font-weight:600;color:#060A45;border-bottom:1px solid #E4E9EF">Mobile</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Mobile cellular subscriptions per 100 people. Can exceed 100 (multiple SIMs). Enables m-commerce in FMCG.</td></tr>
+              <tr style="background:#F7FBFB"><td style="padding:5px 8px;font-weight:600;color:#060A45;border-bottom:1px solid #E4E9EF">Gini Coefficient</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Income inequality index. 0 = perfect equality; 100 = maximum inequality. High Gini = polarized consumption.</td></tr>
+              <tr><td style="padding:5px 8px;font-weight:600;color:#060A45;border-bottom:1px solid #E4E9EF">Median Age</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Years. Young markets (&lt;30) = volume growth; aging markets (&gt;45) = premiumization, health, convenience.</td></tr>
+              <tr style="background:#F7FBFB"><td style="padding:5px 8px;font-weight:600;color:#060A45;border-bottom:1px solid #E4E9EF">Big Mac Price</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">USD price of a Big Mac. Informal proxy for local price levels and cost of living.</td></tr>
+              <tr><td style="padding:5px 8px;font-weight:600;color:#060A45">BM Index vs US</td><td style="padding:5px 8px">Big Mac price vs the US as %. Negative = currency undervalued vs USD; positive = overvalued.</td></tr>
             </table>
           </div>
 
           <!-- RIGHT COL -->
           <div>
-            <div style="font-size:13px;font-weight:800;color:#001C40;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #00B5B5;">📡 Data Sources</div>
+            <div style="font-size:13px;font-weight:800;color:#060A45;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #2D6DF6;">📡 Data Sources</div>
             <table style="width:100%;border-collapse:collapse;font-size:11px;margin-bottom:20px">
-              <tr style="background:#001C40;color:#fff"><th style="padding:6px 8px;text-align:left">KPI</th><th style="padding:6px 8px;text-align:left">Primary Source</th><th style="padding:6px 8px;text-align:left">Coverage</th></tr>
+              <tr style="background:#060A45;color:#fff"><th style="padding:6px 8px;text-align:left">KPI</th><th style="padding:6px 8px;text-align:left">Primary Source</th><th style="padding:6px 8px;text-align:left">Coverage</th></tr>
               <tr style="background:#F7FBFB"><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">GDP/Capita PPP, Growth, Inflation, Unemployment, Govt Debt, Current Account</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">IMF World Economic Outlook Oct 2025 + Jan 2026 Update</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">2014–2025*</td></tr>
               <tr><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Trade Openness, FDI, Pvt Consumption</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">World Bank World Development Indicators (WDI)</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">2014–2024*</td></tr>
               <tr style="background:#F7FBFB"><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Population, Median Age</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">UN World Population Prospects 2024</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">2014–2025</td></tr>
@@ -239,29 +246,29 @@ tr:last-child td{border-bottom:none;}
               <tr><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Gini Coefficient</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">World Bank / National Statistical Offices</td><td style="padding:5px 8px;border-bottom:1px solid #E4E9EF">Latest available, carried forward</td></tr>
               <tr style="background:#F7FBFB"><td style="padding:5px 8px">Big Mac Price &amp; Index</td><td style="padding:5px 8px">The Economist Big Mac Index</td><td style="padding:5px 8px">Semi-annual; gaps interpolated</td></tr>
             </table>
-            <div style="font-size:11px;color:#607080;margin-bottom:20px">* 2025 figures are IMF projections (Jan 2026 update) or author extrapolations where official data is not yet available.</div>
+            <div style="font-size:11px;color:#999999;margin-bottom:20px">* 2025 figures are IMF projections (Jan 2026 update) or author extrapolations where official data is not yet available.</div>
 
-            <div style="font-size:13px;font-weight:800;color:#001C40;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #00B5B5;">⚠ Important Limitations</div>
+            <div style="font-size:13px;font-weight:800;color:#060A45;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #2D6DF6;">⚠ Important Limitations</div>
             <div style="font-size:12px;color:#3A4B5C;margin-bottom:20px">
-              <p style="margin-bottom:8px">🔸 <strong>Not for official citation.</strong> This dashboard is built for strategic orientation, not academic or regulatory reporting. Always reference primary sources for formal documents.</p>
-              <p style="margin-bottom:8px">🔸 <strong>2025 data is forward-looking.</strong> Most 2025 values are IMF projections from January 2026 or linear extrapolations. Actual data will differ.</p>
-              <p style="margin-bottom:8px">🔸 <strong>Gini is not annually updated.</strong> Many countries publish Gini every 3–5 years. Values are carried forward from the latest survey year. Use with caution for recent trend analysis.</p>
-              <p style="margin-bottom:8px">🔸 <strong>Big Mac Index has market gaps.</strong> Not all 42 markets have consistent semi-annual pricing. Some values are interpolated or estimated from adjacent years.</p>
-              <p style="margin-bottom:8px">🔸 <strong>PPP comparisons shift over time.</strong> The IMF updates PPP baselines periodically. Cross-year comparisons in GDP/Capita PPP should account for potential rebasing.</p>
-              <p style="margin-bottom:0">🔸 <strong>Unemployment definitions vary.</strong> Nigeria's unemployment figures reflect methodological changes in 2021 (ILO harmonized vs national definitions). Use EEMEA unemployment data directionally.</p>
+              <p style="margin-bottom:8px">🔸 <strong>Not for official citation.</strong> This dashboard is built for strategic orientation, not academic or regulatory reporting.</p>
+              <p style="margin-bottom:8px">🔸 <strong>2025 data is forward-looking.</strong> Most 2025 values are IMF projections from January 2026 or linear extrapolations.</p>
+              <p style="margin-bottom:8px">🔸 <strong>Gini is not annually updated.</strong> Many countries publish Gini every 3–5 years. Values are carried forward from the latest survey year.</p>
+              <p style="margin-bottom:8px">🔸 <strong>Big Mac Index has market gaps.</strong> Not all 43 markets have consistent semi-annual pricing.</p>
+              <p style="margin-bottom:8px">🔸 <strong>PPP comparisons shift over time.</strong> The IMF updates PPP baselines periodically.</p>
+              <p style="margin-bottom:0">🔸 <strong>Unemployment definitions vary.</strong> Nigeria's figures reflect methodological changes in 2021. Use EEMEA unemployment data directionally.</p>
             </div>
 
-            <div style="font-size:13px;font-weight:800;color:#001C40;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #00B5B5;">🎯 Suggested Use Cases</div>
+            <div style="font-size:13px;font-weight:800;color:#060A45;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #2D6DF6;">🎯 Suggested Use Cases</div>
             <div style="font-size:12px;color:#3A4B5C;margin-bottom:20px">
               <p style="margin-bottom:8px">✅ <strong>Client briefings:</strong> Use Compare view to show how a client's key market stacks up regionally on GDP growth or inflation.</p>
               <p style="margin-bottom:8px">✅ <strong>Market prioritization:</strong> Combine GDP growth + urbanization + internet penetration to rank expansion opportunities.</p>
-              <p style="margin-bottom:8px">✅ <strong>Risk flagging:</strong> Government Debt + CPI Inflation + Current Account together signal macro stress. Turkey, Argentina, Egypt are textbook cases.</p>
-              <p style="margin-bottom:8px">✅ <strong>FMCG channel strategy:</strong> High mobile + internet + urbanization = digital/modern trade opportunity. Compare Indonesia, Vietnam, Philippines.</p>
+              <p style="margin-bottom:8px">✅ <strong>Risk flagging:</strong> Govt Debt + CPI + Current Account together signal macro stress. Turkey, Argentina, Egypt are textbook cases.</p>
+              <p style="margin-bottom:8px">✅ <strong>FMCG channel strategy:</strong> High mobile + internet + urbanization = digital/modern trade opportunity.</p>
               <p>✅ <strong>Competitive context:</strong> GDP/Capita PPP + Gini together explain why some markets support premiumization while others are volume-driven.</p>
             </div>
 
-            <div style="background:#001C40;border-radius:8px;padding:14px 16px;color:rgba(255,255,255,0.8);font-size:11px;line-height:1.8">
-              <div style="color:#00B5B5;font-weight:700;font-size:12px;margin-bottom:6px">📋 Version Info</div>
+            <div style="background:#060A45;border-radius:8px;padding:14px 16px;color:rgba(255,255,255,0.8);font-size:11px;line-height:1.8">
+              <div style="color:#2D6DF6;font-weight:700;font-size:12px;margin-bottom:6px">📋 Version Info</div>
               <div>Coverage: 43 markets · 5 regions · 17 KPIs · 2014–2025</div>
               <div>Built: March 2026 &nbsp;|&nbsp; Data freeze: IMF WEO Jan 2026</div>
               <div>Owner: NielsenIQ Analytics &amp; Insights, APAC</div>
@@ -371,22 +378,20 @@ const D={
 "🇬🇹 Guatemala":{r:"Latin America","Population (M)":[15,16,16,16,17,17,17,17,17,18,18,18],"GDP per Capita PPP (USD)":[8600,8800,9100,9400,9700,10100,10100,11000,11400,11700,12000,12100],"Real GDP Growth (%)":[4.2,4.1,3.1,2.8,3.1,3.8,-1.5,8.0,4.1,3.5,3.5,3.5],"CPI Inflation (%)":[3.4,2.4,4.4,4.4,3.8,3.7,3.2,4.3,6.8,6.2,3.5,3.4],"Unemployment Rate (%)":[2.9,2.7,2.6,2.5,2.5,2.2,2.5,2.5,2.3,2.3,2.5,2.5],"Pvt Consumption (% GDP)":[83,83,83,83,83,83,83,83,83,83,82,82],"Government Debt (% GDP)":[24,24,24,24,24,27,31,30,29,29,29,29],"Current Account (% GDP)":[1.4,0.4,1.1,1.7,1.1,2.7,4.8,5.5,3.7,3.0,3.0,3.0],"Trade Openness (% GDP)":[50,49,49,48,50,52,48,52,55,53,53,53],"FDI Inflows (% GDP)":[2.5,2.3,1.8,1.3,1.4,1.4,1.3,1.5,2.0,1.5,1.5,1.5],"Urbanization Rate (%)":[51,51,52,52,52,52,52,52,53,53,53,53],"Median Age":[21.1,21.5,21.8,22.1,22.5,22.9,23.2,23.2,23.2,23.2,23.2,23.2],"Internet Penetration (%)":[28,32,35,41,52,60,65,65,66,67,68,68],"Mobile Penetration (%)":[123,120,112,114,116,119,116,121,124,126,127,127],"Gini Coefficient":[53.0,53.0,53.0,53.0,53.0,48.3,48.3,48.3,48.3,48.3,48.3,48.3],"Big Mac Price (USD)":[3.67,3.67,3.67,3.67,3.67,3.80,3.80,3.80,3.80,4.00,4.15,4.30],"BM Index vs US (%)":[-23.4,-23.4,-25.5,-27.5,-30.5,-31.9,-32.9,-32.7,-26.2,-28.3,-28.4,-29.7]}
 };
 
-// Region order
 const REGIONS={"US & Canada":[],"Western Europe":[],"EEMEA":[],"Asia-Pacific":[],"Latin America":[]};
 Object.entries(D).forEach(([c,v])=>{ if(REGIONS[v.r]) REGIONS[v.r].push(c); });
 
-const COLORS=['#00B5B5','#F5A623','#E53E3E','#805AD5','#38A169','#3182CE','#D69E2E','#00A878','#E8526A','#718096'];
+const COLORS=['#2D6DF6','#EF5F17','#EF5890','#FFB500','#59AD00','#31D1FF','#060A45','#999999'];
 let curCountry=Object.keys(D)[0], curKPI=KPIS[0].k;
 let mainChart=null, cmpChart=null, miniCharts=[];
 
-// Build sidebar
 function buildSidebar(){
   const sb=document.getElementById('sidebar');
   sb.innerHTML='<div class="slabel">Markets</div>';
   Object.entries(REGIONS).forEach(([reg,countries])=>{
     const sec=document.createElement('div');
     const hdr=document.createElement('div');
-    hdr.className='rhdr'+(reg==='Asia-Pacific'?' open':'');
+    hdr.className='rhdr';
     hdr.innerHTML=`<span>${reg}</span><span class="rchev">▼</span>`;
     hdr.onclick=()=>{hdr.classList.toggle('open');};
     const list=document.createElement('div');
@@ -405,12 +410,8 @@ function buildSidebar(){
     sec.appendChild(list);
     sb.appendChild(sec);
   });
-  // Open first region
-  const first=sb.querySelector('.rhdr');
-  if(first) first.classList.add('open');
 }
 
-// Build KPI pills
 function buildPills(){
   const p=document.getElementById('pills');
   KPIS.forEach(k=>{
@@ -422,7 +423,6 @@ function buildPills(){
   });
 }
 
-// Fill compare selects
 function fillCompareSelects(){
   const all=Object.keys(D);
   ['cs1','cs2','cs3'].forEach((id,i)=>{
@@ -466,7 +466,6 @@ function sv(view,btn){
   if(view==='overview') renderOverview();
   if(view==='table') renderTable();
   if(view==='trend') renderTrend();
-  // about view is static HTML, no render needed
 }
 
 function renderCountryHeader(){
@@ -475,7 +474,8 @@ function renderCountryHeader(){
   const name=c.split(' ').slice(1).join(' ');
   const region=D[c].r;
   const sig=SIGS[c]||'';
-  document.getElementById('chdr').innerHTML=`
+  const el=document.getElementById('chdr');
+  el.innerHTML=`
     <div class="chdr-left">
       <span class="cflag">${flag}</span>
       <div><div class="cname">${name}</div><div class="cregion">${region}</div></div>
@@ -492,7 +492,6 @@ function renderTrend(){
   const ctx=document.getElementById('mainChart').getContext('2d');
   if(mainChart){mainChart.destroy();}
 
-  const isNeg=vals.some(v=>v<0);
   mainChart=new Chart(ctx,{
     type:'line',
     data:{
@@ -500,11 +499,11 @@ function renderTrend(){
       datasets:[{
         label:kpiObj.s,
         data:vals,
-        borderColor:'#00B5B5',
-        backgroundColor:'rgba(0,181,181,0.08)',
+        borderColor:'#2D6DF6',
+        backgroundColor:'rgba(45,109,246,0.07)',
         borderWidth:2.5,
         pointRadius:4,
-        pointBackgroundColor:'#00B5B5',
+        pointBackgroundColor:'#2D6DF6',
         pointBorderColor:'#fff',
         pointBorderWidth:2,
         fill:true,
@@ -517,7 +516,7 @@ function renderTrend(){
       plugins:{
         legend:{display:false},
         tooltip:{
-          backgroundColor:'#001C40',
+          backgroundColor:'#060A45',
           titleColor:'#fff',
           bodyColor:'rgba(255,255,255,0.8)',
           padding:10,
@@ -527,10 +526,10 @@ function renderTrend(){
         }
       },
       scales:{
-        x:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'#607080',font:{size:11}}},
+        x:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'#999999',font:{size:11}}},
         y:{
           grid:{color:'rgba(0,0,0,0.06)'},
-          ticks:{color:'#607080',font:{size:11},callback:v=>kpiObj.u==='USD'?'$'+v.toLocaleString():v+(kpiObj.u==='%'?'%':' '+kpiObj.u)},
+          ticks:{color:'#999999',font:{size:11},callback:v=>kpiObj.u==='USD'?'$'+v.toLocaleString():v+(kpiObj.u==='%'?'%':' '+kpiObj.u)},
           beginAtZero:false
         }
       }
@@ -539,7 +538,6 @@ function renderTrend(){
 }
 
 function renderOverview(){
-  // KPI Cards — show last 4 key KPIs
   const keyKPIs=['GDP per Capita PPP (USD)','Real GDP Growth (%)','CPI Inflation (%)','Unemployment Rate (%)','Government Debt (% GDP)','Internet Penetration (%)','Trade Openness (% GDP)','Gini Coefficient'];
   const cards=document.getElementById('kpi-cards');
   cards.innerHTML='';
@@ -560,7 +558,6 @@ function renderOverview(){
       </div>`;
   });
 
-  // Mini charts
   const miniKeys=['Real GDP Growth (%)','CPI Inflation (%)','Unemployment Rate (%)','Trade Openness (% GDP)','Internet Penetration (%)','Mobile Penetration (%)'];
   const mgrid=document.getElementById('mini-charts');
   mgrid.innerHTML='';
@@ -586,8 +583,8 @@ function renderOverview(){
         data:{labels:YRS,datasets:[{
           data:vals,
           backgroundColor:vals.map(v=>{
-            if(k.includes('Inflation')||k.includes('Debt')||k.includes('Unemployment')) return v>6?'rgba(229,62,62,0.6)':'rgba(0,181,181,0.55)';
-            return v<0?'rgba(229,62,62,0.6)':'rgba(0,181,181,0.55)';
+            if(k.includes('Inflation')||k.includes('Debt')||k.includes('Unemployment')) return v>6?'rgba(239,88,144,0.65)':'rgba(45,109,246,0.55)';
+            return v<0?'rgba(239,88,144,0.65)':'rgba(45,109,246,0.55)';
           }),
           borderRadius:2
         }]},
@@ -618,8 +615,8 @@ function renderCmp(){
   const ctx=document.getElementById('cmpChart').getContext('2d');
   if(cmpChart) cmpChart.destroy();
 
-  const CMP_COLORS=['#00B5B5','#F5A623','#E53E3E','#805AD5','#38A169'];
-  const CMP_BG=['rgba(0,181,181,0.08)','rgba(245,166,35,0.08)','rgba(229,62,62,0.08)','rgba(128,90,213,0.08)','rgba(56,161,105,0.08)'];
+  const CMP_COLORS=['#2D6DF6','#EF5F17','#EF5890'];
+  const CMP_BG=['rgba(45,109,246,0.07)','rgba(239,95,23,0.07)','rgba(239,88,144,0.07)'];
 
   cmpChart=new Chart(ctx,{
     type:'line',
@@ -666,7 +663,7 @@ function renderCmp(){
           }
         },
         tooltip:{
-          backgroundColor:'#001C40',
+          backgroundColor:'#060A45',
           titleColor:'rgba(255,255,255,0.7)',
           bodyColor:'#fff',
           padding:12,
@@ -685,12 +682,12 @@ function renderCmp(){
       scales:{
         x:{
           grid:{color:'rgba(0,0,0,0.05)'},
-          ticks:{color:'#607080',font:{size:11},padding:6}
+          ticks:{color:'#999999',font:{size:11},padding:6}
         },
         y:{
           grid:{color:'rgba(0,0,0,0.06)'},
           ticks:{
-            color:'#607080',
+            color:'#999999',
             font:{size:11},
             padding:8,
             callback:v=>kObj.u==='USD'?'$'+v.toLocaleString():v+(kObj.u==='%'?'%':kObj.u?' '+kObj.u:'')
@@ -739,12 +736,11 @@ function render(){
 buildSidebar();
 buildPills();
 render();
-// Open APAC region by default to show Vietnam
+// Open APAC region by default
 document.querySelectorAll('.rhdr').forEach(h=>{
-  if(h.textContent.includes('Asia-Pacific')){h.classList.add('open');}
+  if(h.textContent.trim().startsWith('Asia-Pacific')){h.classList.add('open');}
   else h.classList.remove('open');
 });
-// Default to Vietnam since Rick is based there
 selectCountry('🇻🇳 Vietnam');
 </script>
 </body>
